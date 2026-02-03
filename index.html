@@ -1,8 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cydia Repo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      text-align: center;
+      padding: 40px;
+    }
+    .card {
+      max-width: 420px;
+      margin: auto;
+      background: #020617;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 0 30px rgba(0,0,0,.4);
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .btn {
+      display: block;
+      margin: 20px 0;
+      padding: 14px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+    .secondary {
+      background: #334155;
+    }
+    code {
+      background: #020617;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World!</h1>
-<p>This is a Cydia repo!</p>
+
+  <div class="card">
+    <h1>My Cydia Repo</h1>
+    <p>Добавьте репозиторий в Cydia одним нажатием</p>
+
+    <!-- КНОПКА CYDIA -->
+    <a class="btn"
+       href="cydia://url/https://USERNAME.github.io/cydia-repo/">
+       ➕ Add to Cydia
+    </a>
+
+    <!-- КНОПКА SILEO -->
+    <a class="btn secondary"
+       href="sileo://source/https://USERNAME.github.io/cydia-repo/">
+       ➕ Add to Sileo
+    </a>
+
+    <p>Или скопируйте вручную:</p>
+    <code>https://USERNAME.github.io/cydia-repo/</code>
+  </div>
+
 </body>
 </html>
 <!-- redeplo -->
