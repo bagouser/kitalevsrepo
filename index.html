@@ -1,77 +1,164 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>My Cydia Repo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      text-align: center;
-      padding: 40px;
-    }
-    .card {
-      max-width: 420px;
-      margin: auto;
-      background: #020617;
-      border-radius: 14px;
-      padding: 30px;
-      box-shadow: 0 0 30px rgba(0,0,0,.4);
-    }
-    h1 {
-      margin-bottom: 10px;
-    }
-    .btn {
-      display: block;
-      margin: 20px 0;
-      padding: 14px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 17px;
-      font-weight: 600;
-    }
-    .btn:hover {
-      background: #1d4ed8;
-    }
-    .secondary {
-      background: #334155;
-    }
-    code {
-      background: #020617;
-      padding: 6px 10px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Cydia Repository</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #020617;
+  --sub: #475569;
+  --btn: #2563eb;
+  --btn-hover: #1d4ed8;
+  --border: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #020617;
+    --card: #020617;
+    --text: #e5e7eb;
+    --sub: #94a3b8;
+    --btn: #2563eb;
+    --btn-hover: #1d4ed8;
+    --border: #1e293b;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 6px;
+}
+
+p {
+  color: var(--sub);
+  margin: 0 0 20px;
+}
+
+.btn {
+  display: block;
+  padding: 14px;
+  margin: 12px 0;
+  background: var(--btn);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+}
+
+.secondary {
+  background: #334155;
+}
+
+.secondary:hover {
+  background: #475569;
+}
+
+.repo-url {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.05);
+  word-break: break-all;
+  font-size: 14px;
+}
+
+.qr {
+  margin-top: 20px;
+}
+
+.toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="card">
-    <h1>My Cydia Repo</h1>
-    <p>Добавьте репозиторий в Cydia одним нажатием</p>
+<button class="toggle" onclick="toggleTheme()">🌗</button>
 
-    <!-- КНОПКА CYDIA -->
-    <a class="btn"
-       href="cydia://url/https://USERNAME.github.io/cydia-repo/">
-       ➕ Add to Cydia
-    </a>
+<div class="card">
+  <h1>My Cydia Repo</h1>
+  <p>Добавьте репозиторий одним нажатием</p>
 
-    <!-- КНОПКА SILEO -->
-    <a class="btn secondary"
-       href="sileo://source/https://USERNAME.github.io/cydia-repo/">
-       ➕ Add to Sileo
-    </a>
+  <a class="btn"
+     href="cydia://url/https://USERNAME.github.io/REPO/">
+     ➕ Add to Cydia
+  </a>
 
-    <p>Или скопируйте вручную:</p>
-    <code>https://USERNAME.github.io/cydia-repo/</code>
+  <a class="btn secondary"
+     href="sileo://source/https://USERNAME.github.io/REPO/">
+     ➕ Add to Sileo
+  </a>
+
+  <a class="btn secondary"
+     href="zbra://sources/add/https://USERNAME.github.io/REPO/">
+     ➕ Add to Zebra
+  </a>
+
+  <div class="repo-url" onclick="copyRepo()">
+    https://USERNAME.github.io/REPO/
   </div>
+
+  <div class="qr">
+    <img id="qr" width="180" height="180">
+    <p style="font-size:13px">Сканируйте QR-код</p>
+  </div>
+</div>
+
+<script>
+const repo = "https://USERNAME.github.io/REPO/";
+
+// QR (через Google Charts — работает на GitHub Pages)
+document.getElementById("qr").src =
+  "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+  encodeURIComponent("cydia://url/" + repo);
+
+function copyRepo() {
+  navigator.clipboard.writeText(repo);
+  alert("Ссылка скопирована");
+}
+
+// ручной переключатель темы
+function toggleTheme() {
+  document.documentElement.classList.toggle("dark");
+}
+</script>
 
 </body>
 </html>
-<!-- redeplo -->
-
