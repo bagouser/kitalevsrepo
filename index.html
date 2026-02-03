@@ -1,171 +1,176 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Cydia Repository</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>My Cydia Repo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root {
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #020617;
-  --sub: #475569;
-  --btn: #2563eb;
-  --btn-hover: #1d4ed8;
-  --border: #e2e8f0;
-}
+    <style>
+        :root {
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --text: #2f3640;
+            --accent: #4cd137;
+        }
 
-html.dark {
-  --bg: #020617;
-  --card: #020617;
-  --text: #e5e7eb;
-  --sub: #94a3b8;
-  --btn: #2563eb;
-  --btn-hover: #1d4ed8;
-  --border: #1e293b;
-}
+        body.dark {
+            --bg: #0f1220;
+            --card: #1b1f3b;
+            --text: #f5f6fa;
+            --accent: #00a8ff;
+        }
 
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.4s, color 0.4s;
+        }
 
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+            animation: fadeIn 0.8s ease;
+        }
 
-.card {
-  width: 100%;
-  max-width: 420px;
-  background: var(--card);
-  border-radius: 18px;
-  padding: 28px;
-  box-shadow: 0 20px 50px rgba(0,0,0,.25);
-  border: 1px solid var(--border);
-  text-align: center;
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-h1 {
-  margin: 0 0 6px;
-}
+        .card {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
 
-p {
-  color: var(--sub);
-  margin: 0 0 20px;
-}
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            font-size: 26px;
+        }
 
-.btn {
-  display: block;
-  padding: 14px;
-  margin: 12px 0;
-  background: var(--btn);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  transition: .2s;
-}
+        p {
+            text-align: center;
+            opacity: 0.8;
+        }
 
-.btn:hover {
-  background: var(--btn-hover);
-}
+        .repo-url {
+            background: rgba(0,0,0,0.05);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            word-break: break-all;
+            margin: 20px 0;
+            font-weight: 500;
+        }
 
-.secondary {
-  background: #334155;
-}
+        body.dark .repo-url {
+            background: rgba(255,255,255,0.08);
+        }
 
-.secondary:hover {
-  background: #475569;
-}
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-.repo-url {
-  margin-top: 14px;
-  padding: 10px;
-  border-radius: 10px;
-  background: rgba(0,0,0,.05);
-  word-break: break-all;
-  font-size: 14px;
-}
+        a.button {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transform: scale(1);
+        }
 
-.qr {
-  margin-top: 20px;
-}
+        a.button:hover {
+            transform: scale(1.05);
+        }
 
-.toggle {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: transparent;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-}
-</style>
+        .theme-toggle {
+            margin-top: 20px;
+            text-align: center;
+            cursor: pointer;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .theme-toggle:hover {
+            opacity: 1;
+        }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+    </style>
 </head>
-
 <body>
 
-<button class="toggle" onclick="toggleTheme()">🌗</button>
+<div class="container">
+    <div class="card">
+        <h1>🚀 My Cydia Repo</h1>
+        <p>Репозиторий твиков для iOS</p>
 
-<div class="card">
-  <h1>My Cydia Repo</h1>
-  <p>Добавьте репозиторий одним нажатием</p>
+        <div class="repo-url">
+            https://username.github.io/cydia-repo/
+        </div>
 
-  <a class="btn"
-     href="cydia://url/https://USERNAME.github.io/REPO/">
-     ➕ Add to Cydia
-  </a>
+        <div class="buttons">
+            <a class="button" href="cydia://url/https://cydia.saurik.com/api/share#?source=https://username.github.io/cydia-repo/">
+                Добавить в Cydia
+            </a>
+            <a class="button" href="https://github.com/username/cydia-repo">
+                GitHub
+            </a>
+        </div>
 
-  <a class="btn secondary"
-     href="sileo://source/https://USERNAME.github.io/REPO/">
-     ➕ Add to Sileo
-  </a>
+        <div class="theme-toggle" onclick="toggleTheme()">
+            🌙 / ☀️ Переключить тему
+        </div>
+    </div>
 
-  <a class="btn secondary"
-     href="zbra://sources/add/https://USERNAME.github.io/REPO/">
-     ➕ Add to Zebra
-  </a>
-
-  <div class="repo-url" onclick="copyRepo()">
-    https://USERNAME.github.io/REPO/
-  </div>
-
-  <div class="qr">
-    <img id="qr" width="180" height="180">
-    <p style="font-size:13px">Сканируйте QR-код</p>
-  </div>
+    <footer>
+        © 2026 My Repo
+    </footer>
 </div>
 
 <script>
-const repo = "https://USERNAME.github.io/REPO/";
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme');
 
-// QR (через Google Charts — работает на GitHub Pages)
-document.getElementById("qr").src =
-  "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
-  encodeURIComponent("cydia://url/" + repo);
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+    }
 
-function copyRepo() {
-  navigator.clipboard.writeText(repo);
-  alert("Ссылка скопирована");
-}
-
-function toggleTheme() {
-  document.documentElement.classList.toggle("dark");
-  localStorage.setItem(
-    "theme",
-    document.documentElement.classList.contains("dark") ? "dark" : "light"
-  );
-}
-
-if (localStorage.getItem("theme") === "dark") {
-  document.documentElement.classList.add("dark");
-}
-
+    function toggleTheme() {
+        body.classList.toggle('dark');
+        localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+    }
+</script>
 
 </body>
 </html>
